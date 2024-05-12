@@ -13,7 +13,8 @@
             </div>
             <img class="card-img-top" src="{{ product.photo | media_filter }}">
             <div class="card-body">
-                <button type="button" class="btn btn-primary">Посмотреть</button>
+                <a class="btn btn-primary" role="button"
+                   href="{% url 'catalog:product_detail' product.pk %}">Посмотреть</a>
                 <button type="button" class="btn btn-primary">Купить</button>
             </div>
         </div>
