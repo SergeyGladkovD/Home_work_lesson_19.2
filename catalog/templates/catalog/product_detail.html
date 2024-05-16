@@ -1,14 +1,14 @@
-{% extends 'base.html' %}
+{% extends 'catalog/base.html' %}
 {% load my_tags %}
 {% block content %}
 <div class="row text-center">
     <div class="col-4">
         <div class="card mb-4 box-shadow">
             <div class="card-header">
-                <h4 class="my-0 font-weight-normal">{{ product.name }}</h4>
-                <h4 class="my-0 font-weight-normal">{{ product.category }}</h4>
-                <h4 class="my-0 font-weight-normal">{{ product.description | truncatewords:50}}</h4>
-                <h4 class="my-0 font-weight-normal">{{ product.price }} р. за кг.</h4>
+                <h4 class="my-0 font-weight-normal">{{ object.name }}</h4>
+                <h4 class="my-0 font-weight-normal">{{ object.category }}</h4>
+                <h4 class="my-0 font-weight-normal">{{ object.description | truncatewords:50}}</h4>
+                <h4 class="my-0 font-weight-normal">{{ object.price }} р. за кг.</h4>
             </div>
             <img class="card-img-top" src="{{ product.photo | media_filter }}">
             <div class="card-body">
