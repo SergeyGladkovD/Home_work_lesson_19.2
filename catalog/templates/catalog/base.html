@@ -13,6 +13,7 @@
     <nav class="ms-5">
         <a class="p-2 btn btn-outline-primary" href="/">Каталог</a>
         <a class="p-2 btn btn-outline-primary" href="/">Контакты</a>
+        <a class="p-2 btn btn-outline-primary" href="{% url 'materials:list' %}">Материалы</a>
     </nav>
 </div>
 
@@ -31,7 +32,7 @@
     {% endblock %}
 
     <footer class="pt-4 my-md-5 pt-md-5 border-top">
-        {% include 'includes/inc_footer.html' %}
+        {% include 'catalog/includes/inc_footer.html' %}
     </footer>
 </div>
 </body>
