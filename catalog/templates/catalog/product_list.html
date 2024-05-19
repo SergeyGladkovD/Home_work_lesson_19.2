@@ -2,6 +2,8 @@
 {% load my_tags %}
 {% block content %}
 <div class="row text-center">
+    <a class="btn btn-primary" role="button"
+       href="{% url 'catalog:create' %}">Создать</a>
     {% for product in object_list %}
     <div class="col-4">
         <div class="card mb-4 box-shadow">
@@ -13,9 +15,14 @@
             </div>
             <img class="card-img-top" src="{{ product.photo | media_filter }}">
             <div class="card-body">
+                <div class="card-body">
+                    <a class="btn btn-primary" role="button"
+                       href="{% url 'catalog:edit' product.pk %}">Редактировать</a>
+                    <a class="btn btn-primary" role="button"
+                       href="{% url 'catalog:delete' product.pk %}">Удалить</a>
+                </div>
                 <a class="btn btn-primary" role="button"
                    href="{% url 'catalog:product_detail' product.pk %}">Посмотреть</a>
-                <button type="button" class="btn btn-primary">Купить</button>
             </div>
         </div>
     </div>
