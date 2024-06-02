@@ -26,21 +26,23 @@ class ProductUpdateView(UpdateView):
     success_url = reverse_lazy('catalog:product_list')
 
     def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        VersionFormSet = inlineformset_factory(Product, Version, form=VersionForm, extra=1)
+        context_data = super().get_context_data(**kwargs)
+        VersionFormset = inlineformset_factory(Product, Version, VersionForm, extra=1, can_delete=True)
         if self.request.method == 'POST':
-            context['formset'] = VersionFormSet(self.request.POST, instance=self.object)
+            context_data['formset'] = VersionFormset(self.request.POST, instance=self.object)
         else:
-            context['formset'] = VersionFormSet(instance=self.object)
-        return context
+            context_data['formset'] = VersionFormset(instance=self.object)
+        return context_data
 
     def form_valid(self, form):
         context = self.get_context_data()
         formset = context['formset']
         self.object = form.save()
-        if formset.is_valid:
+        if formset.is_valid():
             formset.instance = self.object
             formset.save()
+        else:
+            return self.form_invalid(form)
         return super().form_valid(form)
 
 
