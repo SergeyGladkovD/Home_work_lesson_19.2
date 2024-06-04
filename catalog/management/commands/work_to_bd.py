@@ -11,8 +11,8 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
 
         with connection.cursor() as cursor:
-            cursor.execute(f"TRUNCATE TABLE catalog_category RESTART IDENTITY CASCADE;")
-            cursor.execute(f"TRUNCATE TABLE catalog_product RESTART IDENTITY CASCADE;")
+            cursor.execute("TRUNCATE TABLE catalog_category RESTART IDENTITY CASCADE;")
+            cursor.execute("TRUNCATE TABLE catalog_product RESTART IDENTITY CASCADE;")
         Product.objects.all().delete()
         Category.objects.all().delete()
 

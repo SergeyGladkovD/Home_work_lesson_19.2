@@ -45,11 +45,18 @@ class Category(models.Model):
 
 
 class Version(models.Model):
-    product = models.ForeignKey(Product, related_name='versions', on_delete=models.CASCADE, **NULLABLE,
-                                verbose_name='Продукт')
-    num_version = models.PositiveIntegerField(verbose_name='номер версии')
-    name_version = models.TextField(verbose_name='название версии')
-    indicates_current_version = models.BooleanField(default=True, verbose_name='признак текущей версии.')
+    product = models.ForeignKey(
+        Product,
+        related_name="versions",
+        on_delete=models.CASCADE,
+        **NULLABLE,
+        verbose_name="Продукт",
+    )
+    num_version = models.PositiveIntegerField(verbose_name="номер версии")
+    name_version = models.TextField(verbose_name="название версии")
+    indicates_current_version = models.BooleanField(
+        default=True, verbose_name="признак текущей версии."
+    )
 
     def __str__(self):
         return f"{self.product} {self.num_version} {self.name_version}"
