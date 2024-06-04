@@ -4,17 +4,17 @@ NULLABLE = {"blank": "True", "null": "True"}
 
 
 class Material(models.Model):
-	title = models.CharField(max_length=50, verbose_name="заголовок")
-	slug = models.CharField(max_length=150, verbose_name='URL', **NULLABLE)
-	content = models.TextField(verbose_name="содержимое", **NULLABLE)
-	preview = models.ImageField(upload_to="media/photo", **NULLABLE)
-	created_at = models.DateField(auto_created=True, verbose_name="дата создания")
-	published = models.BooleanField(default=True, verbose_name='опубликован')
-	views = models.IntegerField(default=0, verbose_name='просмотры')
+    title = models.CharField(max_length=50, verbose_name="заголовок")
+    slug = models.CharField(max_length=150, verbose_name="URL", **NULLABLE)
+    content = models.TextField(verbose_name="содержимое", **NULLABLE)
+    preview = models.ImageField(upload_to="media/photo", **NULLABLE)
+    created_at = models.DateField(auto_created=True, verbose_name="дата создания")
+    published = models.BooleanField(default=True, verbose_name="опубликован")
+    views = models.IntegerField(default=0, verbose_name="просмотры")
 
-	def __str__(self):
-		return self.title
+    def __str__(self):
+        return self.title
 
-	class Meta:
-		verbose_name = "материал"
-		verbose_name_plural = "материалы"
+    class Meta:
+        verbose_name = "материал"
+        verbose_name_plural = "материалы"
