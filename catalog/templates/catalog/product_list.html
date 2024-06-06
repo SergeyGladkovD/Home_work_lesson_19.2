@@ -25,8 +25,11 @@
                    href="{% url 'catalog:product_detail' product.pk %}">Посмотреть</a>
             </div>
             <div class="card-footer">
-                версии:
-                номер версии:
+                {% for version in product.version_set.all %}
+                {% if version.indicates_current_version %}
+                <p>Версия: {{version.num_version}} Название: {{version.name_version}}</p>
+                {% endif %}
+                {% endfor %}
             </div>
         </div>
     </div>
