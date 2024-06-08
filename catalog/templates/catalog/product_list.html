@@ -2,8 +2,10 @@
 {% load my_tags %}
 {% block content %}
 <div class="row text-center">
+    {% if user.is_authenticated %}
     <a class="btn btn-primary" role="button"
        href="{% url 'catalog:create' %}">Создать</a>
+    {% endif %}
     {% for product in object_list %}
     <div class="col-4">
         <div class="card mb-4 box-shadow">
@@ -15,6 +17,7 @@
             </div>
             <img class="card-img-top" src="{{ product.photo | media_filter }}">
             <div class="card-body">
+                {% if user.is_authenticated %}
                 <div class="card-body">
                     <a class="btn btn-primary" role="button"
                        href="{% url 'catalog:edit' product.pk %}">Редактировать</a>
@@ -24,8 +27,12 @@
                 <a class="btn btn-primary" role="button"
                    href="{% url 'catalog:product_detail' product.pk %}">Посмотреть</a>
             </div>
+            {% else %}
+            <a class="btn btn-primary" role="button"
+               href="{% url 'catalog:product_detail' product.pk %}">Посмотреть</a>
+            {% endif %}
             <div class="card-footer">
-                {% for version in product.version_set.all %}
+                {% for version in product.versions.all %}
                 {% if version.indicates_current_version %}
                 <p>Версия: {{version.num_version}} Название: {{version.name_version}}</p>
                 {% endif %}
