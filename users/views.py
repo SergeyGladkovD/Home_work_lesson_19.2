@@ -1,7 +1,7 @@
 import secrets
 
 from django.core.mail import send_mail
-from django.shortcuts import get_object_or_404, redirect
+from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse_lazy, reverse
 from django.views.generic import CreateView
 
@@ -37,3 +37,7 @@ def email_verification(request, token):
     user.is_active = True
     user.save()
     return redirect(reverse("users:login"))
+
+
+def send_message(request):
+    return render(request, "users/send_message.html")
