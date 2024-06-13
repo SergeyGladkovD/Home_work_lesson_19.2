@@ -17,20 +17,17 @@
             </div>
             <img class="card-img-top" src="{{ product.photo | media_filter }}">
             <div class="card-body">
-                {% if user.is_authenticated %}
+                {% if perms.product.can_cancel_publication and perms.can_edit_description and perms.can_edit_category or user == product.owner %}
                 <div class="card-body">
                     <a class="btn btn-primary" role="button"
                        href="{% url 'catalog:edit' product.pk %}">Редактировать</a>
                     <a class="btn btn-primary" role="button"
                        href="{% url 'catalog:delete' product.pk %}">Удалить</a>
                 </div>
+                {% endif %}
                 <a class="btn btn-primary" role="button"
                    href="{% url 'catalog:product_detail' product.pk %}">Посмотреть</a>
             </div>
-            {% else %}
-            <a class="btn btn-primary" role="button"
-               href="{% url 'catalog:product_detail' product.pk %}">Посмотреть</a>
-            {% endif %}
             <div class="card-footer">
                 {% for version in product.versions.all %}
                 {% if version.indicates_current_version %}

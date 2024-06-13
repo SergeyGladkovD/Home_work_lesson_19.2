@@ -26,6 +26,7 @@ class Product(models.Model):
     owner = models.ForeignKey(
         User, verbose_name="владелец", on_delete=models.SET_NULL, **NULLABLE
     )
+    is_publication = models.BooleanField(default=False)
 
     def __str__(self):
         return f"{self.name} {self.description} {self.price}"
@@ -34,6 +35,11 @@ class Product(models.Model):
         verbose_name = "продукт"
         verbose_name_plural = "продукты"
         ordering = ("name", "category")
+        permissions = (
+            ("can_cancel_publication", "Can cancel publication"),
+            ("can_edit_description", "Can edit description"),
+            ("can_edit_category", "Can edit category"),
+        )
 
 
 class Category(models.Model):
